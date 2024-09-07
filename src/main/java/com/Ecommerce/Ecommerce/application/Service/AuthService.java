@@ -48,12 +48,12 @@ public class AuthService {
     public AuthenticationResponse authenticate(LoginDto request){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getUserName(),
-                        request.getPassword()
+                        request.username,
+                        request.password
                 )
         );
 
-        User user =  userRepository.findByUsername(request.getUserName()).orElseThrow(() -> new UsernameNotFoundException("User not found "));
+        User user =  userRepository.findByUsername(request.username).orElseThrow(() -> new UsernameNotFoundException("User not found "));
         String token = jwtService.generateToken(user);
         return new AuthenticationResponse(token);
     }
