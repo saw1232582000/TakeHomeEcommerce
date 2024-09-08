@@ -3,17 +3,14 @@ package com.Ecommerce.Ecommerce.application.Service;
 import com.Ecommerce.Ecommerce.application.dto.authentication.AuthenticationResponse;
 import com.Ecommerce.Ecommerce.application.dto.login.LoginDto;
 import com.Ecommerce.Ecommerce.application.dto.register.RegisterDto;
-import com.Ecommerce.Ecommerce.domain.modal.User.User;
+import com.Ecommerce.Ecommerce.domain.model.User.User;
 import com.Ecommerce.Ecommerce.domain.repository.User.UserRepository;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 

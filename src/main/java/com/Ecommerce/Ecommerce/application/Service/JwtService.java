@@ -1,6 +1,6 @@
 package com.Ecommerce.Ecommerce.application.Service;
 
-import com.Ecommerce.Ecommerce.domain.modal.User.User;
+import com.Ecommerce.Ecommerce.domain.model.User.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

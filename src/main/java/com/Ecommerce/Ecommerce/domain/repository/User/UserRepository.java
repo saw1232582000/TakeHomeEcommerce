@@ -1,10 +1,10 @@
 package com.Ecommerce.Ecommerce.domain.repository.User;
 
-import com.Ecommerce.Ecommerce.domain.modal.User.User;
+import com.Ecommerce.Ecommerce.domain.model.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User,Long> {
-    Optional<User> findByUsername(String username);
+public interface UserRepository extends JpaRepository<User, UUID>,IBaseUserRepository {
+
 }
