@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,10 +25,12 @@ public class SecurityConfig {
     private final UserService userService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+
     @Autowired
     public SecurityConfig(UserService userService, JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.userService = userService;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+
     }
 
     @Bean
@@ -35,13 +38,29 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req -> req.requestMatchers("/auth/login/**","/auth/register/**")
+                        req -> req.requestMatchers(
+                                "/auth/login/**",
+                                "/auth/register/**",
+                                "/api/v1/auth/**",
+                                "/v2/api-docs",
+                                "/v3/api-docs",
+                                "/v3/api-docs/**",
+                                "/swagger-resources",
+                                "/swagger-resources/**",
+                                "/configuration/ui",
+                                "/configuration/security",
+                                "/swagger-ui/**",
+                                "/webjars/**",
+                                "/swagger-ui.html"
+//
+                                )
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userService)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
