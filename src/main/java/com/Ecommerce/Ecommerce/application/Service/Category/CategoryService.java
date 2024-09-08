@@ -26,7 +26,7 @@ public class CategoryService implements ICategoryService{
         Category newCategory=new Category();
         newCategory.setName(request.name);
         newCategory.setDescription(request.description);
-        this.categoryRepository.save(newCategory);
+
         return this.categoryRepository.save(newCategory);
     }
 

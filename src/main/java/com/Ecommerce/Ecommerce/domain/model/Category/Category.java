@@ -1,10 +1,16 @@
 package com.Ecommerce.Ecommerce.domain.model.Category;
 
 import com.Ecommerce.Ecommerce.domain.model.Product.Product;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -20,8 +26,12 @@ public class Category {
     @Column(name="description")
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Product> products;
+
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonManagedReference
+    @JsonIgnore
+    private List<Product> products ;
 
     public UUID getId() {
         return id;

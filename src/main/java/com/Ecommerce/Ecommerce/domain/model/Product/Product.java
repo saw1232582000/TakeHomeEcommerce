@@ -2,12 +2,18 @@ package com.Ecommerce.Ecommerce.domain.model.Product;
 
 
 import com.Ecommerce.Ecommerce.domain.model.Category.Category;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.UUID;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Product {
     @Id
     @GeneratedValue
@@ -27,7 +33,9 @@ public class Product {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id")
+//    @JsonBackReference
+//    @JsonManagedReference
     private Category category;
 
     public UUID getId() {
