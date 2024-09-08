@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 
 public class AuthService {
@@ -36,7 +38,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
         user.setPhone(request.getPhone());
-
+        user.setCreatedAt(LocalDateTime.now());
         user=userRepository.save(user);
         String token=jwtService.generateToken(user);
         return new AuthenticationResponse(token);

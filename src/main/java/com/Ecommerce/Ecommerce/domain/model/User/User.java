@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -47,6 +48,8 @@ public class User implements UserDetails {
     @Column(name="phone")
     private String phone;
 
+    @Column(name = "created_at", nullable = true, updatable = false)
+    private LocalDateTime createdAt;
     // Getters and Setters
 
 
@@ -132,5 +135,13 @@ public class User implements UserDetails {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
