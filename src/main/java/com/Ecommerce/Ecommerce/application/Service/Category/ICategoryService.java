@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface ICategoryService {
     Category createCategory(CategoryDto request);
     Category getCategoryById(UUID id);
-    Boolean deleteCategoryById(UUID id);
+    void deleteCategoryById(UUID id);
     Category updateCategory(UUID id,CategoryDto request);
     List<Category> findAll();
 }

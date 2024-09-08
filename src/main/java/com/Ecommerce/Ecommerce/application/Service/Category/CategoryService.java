@@ -38,9 +38,10 @@ public class CategoryService implements ICategoryService{
 
 
     @Override
-    public Boolean deleteCategoryById(UUID id) {
+    public void deleteCategoryById(UUID id) {
+        this.categoryRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Category to be deleted Not Found"));
         this.categoryRepository.deleteById(id);
-        return true;
+
     }
 
     @Override
