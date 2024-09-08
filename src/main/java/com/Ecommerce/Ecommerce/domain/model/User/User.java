@@ -1,14 +1,17 @@
-package com.Ecommerce.Ecommerce.domain.modal.User;
+package com.Ecommerce.Ecommerce.domain.model.User;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UuidGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity
@@ -17,11 +20,15 @@ import java.util.List;
 @Data
 public class User implements UserDetails {
 
+//    @Id
+////    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_gen")
+//    @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", allocationSize = 1)
+//    private Long id;
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_gen")
-    @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", allocationSize = 1)
-    private Long id;
+    @GeneratedValue
+    @UuidGenerator
+    private UUID id;
 
     @Column(name="username")
     private String username;
@@ -41,15 +48,11 @@ public class User implements UserDetails {
     @Column(name="phone")
     private String phone;
 
+    @Column(name = "created_at", nullable = true, updatable = false)
+    private LocalDateTime createdAt;
     // Getters and Setters
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -124,5 +127,21 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

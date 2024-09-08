@@ -1,7 +1,7 @@
 package com.Ecommerce.Ecommerce.application.Service;
 
 
-import com.Ecommerce.Ecommerce.domain.modal.User.User;
+import com.Ecommerce.Ecommerce.domain.model.User.User;
 
 import com.Ecommerce.Ecommerce.domain.repository.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -27,8 +29,8 @@ public class UserService implements UserDetailsService {
         return this.userRepository.save(newUser);
     }
 
-    public User getUser(Long id){
-        return this.userRepository.getReferenceById(id);
+    public User getUser(String id){
+        return this.userRepository.getReferenceById(UUID.fromString(id));
     }
 
     @Override

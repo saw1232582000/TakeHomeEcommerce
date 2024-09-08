@@ -1,9 +1,6 @@
 package com.Ecommerce.Ecommerce.application.dto.register;
 
-import com.Ecommerce.Ecommerce.domain.modal.User.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.Ecommerce.Ecommerce.domain.model.User.Role;
 
 public class RegisterDto {
 
