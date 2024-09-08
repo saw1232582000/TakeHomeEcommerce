@@ -34,7 +34,7 @@ public class ProductService implements IBaseProductService {
         newProduct.setSku(request.sku);
         newProduct.setPrice(request.price);
         newProduct.setDescription(request.description);
-
+        newProduct.setImage(request.image);
 
         return this.productRepository.save(newProduct);
     }
@@ -59,6 +59,7 @@ public class ProductService implements IBaseProductService {
         existingProduct.setSku(request.sku);
         existingProduct.setPrice(request.price);
         existingProduct.setDescription(request.description);
+        existingProduct.setImage(request.image);
         return this.productRepository.save(existingProduct);
     }
 

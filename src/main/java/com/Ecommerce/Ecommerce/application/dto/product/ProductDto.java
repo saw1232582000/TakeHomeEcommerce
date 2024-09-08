@@ -19,6 +19,7 @@ public class ProductDto {
 
     public Double price;
 
+    public String image;
 
     public String sku;
 

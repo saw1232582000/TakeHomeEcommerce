@@ -29,6 +29,9 @@ public class Product {
     @Column(name="sku")
     private String sku;
 
+    @Column(name="image")
+    private String image;
+
     @Column(name="description")
     private String description;
 
@@ -84,5 +87,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
