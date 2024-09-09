@@ -5,6 +5,7 @@ import com.Ecommerce.Ecommerce.application.Service.UserService;
 import com.Ecommerce.Ecommerce.domain.model.User.Role;
 import com.Ecommerce.Ecommerce.domain.model.User.User;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("users")
+@Tag(name = "User")
 public class UserController {
     private final UserService userService;
 
