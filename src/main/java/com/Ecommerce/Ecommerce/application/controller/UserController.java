@@ -7,6 +7,8 @@ import com.Ecommerce.Ecommerce.domain.model.User.User;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,15 +26,10 @@ public class UserController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @GetMapping("/getSampleUser")
+    @GetMapping("/getMe")
     public ResponseEntity<User> getUser(){
-        User user=new User();
-        user.setUsername("test");
-        user.setRole(Role.USER);
-        user.setEmail("test@gmail.com");
-        user.setPhone("123456");
-        user.setId(new UUID(23,23));
-
-        return  ResponseEntity.ok(user);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = (User) authentication.getPrincipal();
+        return ResponseEntity.ok(currentUser);
     }
 }

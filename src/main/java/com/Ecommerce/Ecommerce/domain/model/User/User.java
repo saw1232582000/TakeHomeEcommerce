@@ -1,5 +1,7 @@
 package com.Ecommerce.Ecommerce.domain.model.User;
 
+import com.Ecommerce.Ecommerce.domain.model.Order.Orders;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +35,7 @@ public class User implements UserDetails {
     @Column(name="username")
     private String username;
 
+    @JsonIgnore
     @Column(name="password")
     private String password;
 
@@ -52,7 +55,10 @@ public class User implements UserDetails {
     private LocalDateTime createdAt;
     // Getters and Setters
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonManagedReference
+    @JsonIgnore
+    private List<Orders> orders ;
 
     public String getUsername() {
         return username;
