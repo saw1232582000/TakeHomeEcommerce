@@ -1,23 +1,41 @@
-## Requirements
-__Software Requirements:__
+# Ecommerce Spring Boot Application
 
+This project is an Ecommerce application built with Spring Boot. The application is configured to connect to a relational database, manage user authentication, and handle typical ecommerce operations.
 
+## Documentation
 
-__Optional Requirements:__
+ERD diagram for database schema and Code Structure Explanation can be found in __'documentation.zip'__ file
 
+## Prerequisites
 
+Before you begin, ensure you have the following installed on your local machine:
 
-## Setting Project
+- **Java Development Kit (JDK) 21+**: [Download JDK](https://www.oracle.com/java/technologies/javase-downloads.html)
+- **Apache Maven**: [Download Maven](https://maven.apache.org/download.cgi)
+- **Git**: [Download Git](https://git-scm.com/downloads)
+- **Oracle Database**: Make sure you have installed Oracle database and the server is running.
 
-Run following command in project directory
+## Clone the Repository
 
--run __'npm install'__ (install necessary packages)  
--create a file called '.env' in the project root directory  
--copy environment variables from '.env.example' and paste them in '.env'  
--environment varibales values should be replaced with your own value such as database URL  
--run __'npx prisma migrate dev'__ (run migration script to database)  
--run __'npm run dev'__ (start running app)  
+```bash
+-git clone https://github.com/saw1232582000/TakeHomeEcommerce.git
+-cd TakeHomeEcommerce
+```
 
-## Disclaimer
+## Application Properties
 
-This prototype is intended for educational purposes and demonstrates security best practices. It's recommended to conduct further security assessments before deploying in a production environment. 
+Setup these properties in your __'application.properties'__ file or __'application.yml'__ file
+
+- **spring.datasource.url** = [Your oracle database url]
+- **spring.datasource.username** = [database username]
+- **spring.datasource.password** = [database password]
+- **spring.datasource.driver-class-name** = oracle.jdbc.OracleDriver
+- **spring.jpa.hibernate.ddl-auto** = update
+- **spring.jpa.hibernate.ddl-auto** = update
+
+## Installing Dependencies and Running the Project
+
+```bash
+-mvn clean install
+-mvn spring-boot:run
+```
