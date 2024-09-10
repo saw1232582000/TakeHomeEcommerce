@@ -1,6 +1,8 @@
 package com.Ecommerce.Ecommerce.application.dto.register;
 
 import com.Ecommerce.Ecommerce.domain.model.User.Role;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 public class RegisterDto {
 
@@ -9,7 +11,8 @@ public class RegisterDto {
 
     private String password;
 
-
+    @NotNull
+    @Email(message = "Invalid email format")
     private String email;
 
 

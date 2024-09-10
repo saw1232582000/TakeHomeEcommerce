@@ -41,21 +41,49 @@ public class CategoryController {
         return ResponseEntity.ok(CoreApiResponse.success("Category Created Successfully",200,this.categoryService.createCategory(request)));
     }
 
+    @Operation(summary = "Get category detail by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully created category",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CategoryResponseSchema.class))),
+
+    })
     @GetMapping("/getById")
     public ResponseEntity<CoreApiResponse<Category>> getCategoryById(@RequestParam String id){
         return ResponseEntity.ok(CoreApiResponse.success("Success",200,this.categoryService.getCategoryById(UUID.fromString(id))));
     }
 
+    @Operation(summary = "Get a list of all category")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully created category",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CategoryResponseSchema.class))),
+
+    })
     @GetMapping("/getAll")
     public ResponseEntity<CoreApiResponse<List<Category>>> getAll(){
         return ResponseEntity.ok(CoreApiResponse.success("success",200,this.categoryService.findAll()));
     }
 
+    @Operation(summary = "Update an existing category")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully created category",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CategoryResponseSchema.class))),
+
+    })
     @PutMapping("/update")
     public ResponseEntity<CoreApiResponse<Category>> updateCategory(@RequestParam String id, @RequestBody CategoryDto request){
         return ResponseEntity.ok(CoreApiResponse.success("Updated Successfully",200,this.categoryService.updateCategory(UUID.fromString(id),request)));
     }
 
+    @Operation(summary = "Delete a category")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully created category",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CategoryResponseSchema.class))),
+
+    })
     @DeleteMapping("/delete")
     public ResponseEntity<CoreApiResponse<?>> deleteCategory(@RequestParam String id){
         this.categoryService.deleteCategoryById(UUID.fromString(id));
