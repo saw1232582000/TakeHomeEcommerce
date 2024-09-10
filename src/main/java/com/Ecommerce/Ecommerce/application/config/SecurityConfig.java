@@ -56,7 +56,9 @@ public class SecurityConfig {
 //
                                 )
                                 .permitAll()
-                                .requestMatchers("/product/**").hasAuthority("ADMIN")
+                                .requestMatchers("/product/create/**").hasAuthority("ADMIN")
+                                .requestMatchers("/product/update/**").hasAuthority("ADMIN")
+                                .requestMatchers("/product/delete/**").hasAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userService)

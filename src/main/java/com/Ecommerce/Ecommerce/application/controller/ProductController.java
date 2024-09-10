@@ -25,7 +25,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("product")
-@Tag(name = "Product", description = "Admin only route")
+@Tag(name = "Product")
 public class ProductController {
     private final ProductService productService;
 
@@ -34,7 +34,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @Operation(summary = "Create new product")
+    @Operation(summary = "Create new product(Admin only route)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = @Content(mediaType = "application/json",
@@ -70,7 +70,7 @@ public class ProductController {
         return ResponseEntity.ok(CoreApiResponse.success("success",200,this.productService.findAll()));
     }
 
-    @Operation(summary = "Update a product")
+    @Operation(summary = "Update a product(Admin only route)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = @Content(mediaType = "application/json",
@@ -82,7 +82,7 @@ public class ProductController {
         return ResponseEntity.ok(CoreApiResponse.success("Updated Successfully",200,this.productService.updateProduct(UUID.fromString(id),request)));
     }
 
-    @Operation(summary = "Delete a product")
+    @Operation(summary = "Delete a product(Admin only route)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = @Content(mediaType = "application/json")),
