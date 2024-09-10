@@ -25,7 +25,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("product")
-@Tag(name = "Product")
+@Tag(name = "Product", description = "Admin only route")
 public class ProductController {
     private final ProductService productService;
 

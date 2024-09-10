@@ -33,9 +33,8 @@ Setup these properties in your __'application.properties'__ file or __'applicati
 - **spring.jpa.hibernate.ddl-auto** = update
 
 
-## Installing Dependencies and Running the Project
+##  Running the Project
 
-```bash
--mvn clean install
--mvn spring-boot:run
-```
+Run your project.
+
+Then, Access the application by navigating to __'http://localhost:8080/swagger-ui/index.html'__
