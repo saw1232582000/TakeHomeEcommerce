@@ -3,6 +3,7 @@ package com.Ecommerce.Ecommerce.application.handler;
 import com.Ecommerce.Ecommerce.application.exception.ResourceNotFoundException;
 import com.Ecommerce.Ecommerce.application.documentation.schema.CoreApiResponse;
 import com.Ecommerce.Ecommerce.application.exception.UnauthorizedException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -50,6 +51,15 @@ public class GlobalExceptionHandler {
         }
 
         CoreApiResponse<?> response = CoreApiResponse.error("Invalid Input Format", HttpStatus.BAD_REQUEST.value(), errors);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<CoreApiResponse<?>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+
+
+        CoreApiResponse<?> response = CoreApiResponse.error("Name or Email is already used", HttpStatus.BAD_REQUEST.value());
+
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
