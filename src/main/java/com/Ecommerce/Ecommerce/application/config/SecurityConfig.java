@@ -56,6 +56,7 @@ public class SecurityConfig {
 //
                                 )
                                 .permitAll()
+                                .requestMatchers("/product/**").hasAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userService)

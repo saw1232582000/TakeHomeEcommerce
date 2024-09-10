@@ -32,7 +32,7 @@ public class User implements UserDetails {
     @UuidGenerator
     private UUID id;
 
-    @Column(name="username")
+    @Column(name="username",unique = true)
     private String username;
 
     @JsonIgnore
@@ -98,6 +98,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
