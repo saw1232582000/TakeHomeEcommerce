@@ -31,7 +31,7 @@ Setup these properties in your __'application.properties'__ file or __'applicati
 - **spring.datasource.password** = [database password]
 - **spring.datasource.driver-class-name** = oracle.jdbc.OracleDriver
 - **spring.jpa.hibernate.ddl-auto** = update
-- **spring.jpa.hibernate.ddl-auto** = update
+
 
 ## Installing Dependencies and Running the Project
 
