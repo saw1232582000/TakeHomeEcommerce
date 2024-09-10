@@ -47,7 +47,6 @@ public class OrderService implements IOrderService{
         newOrder.setBilling_phone(request.billing_phone);
         newOrder.setTax_amount(request.tax_amount);
         newOrder.setShipping_cost(request.shipping_cost);
-        newOrder.setShipping_cost(request.shipping_cost);
         newOrder.setDiscount(request.discount);
         newOrder.setTotal_price(request.total_price);
         User user= this.userRepository.findById(request.userId).orElseThrow(()->new ResourceNotFoundException("User not found"));
@@ -84,6 +83,11 @@ public class OrderService implements IOrderService{
     public Orders updateOrder(UUID id, UpdateOrderDto request) {
         Orders existingOrder=this.orderRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Order Not Found"));
         existingOrder.setStatus(request.status);
+        existingOrder.setPayment_method(request.payment_method);
+        existingOrder.setBilling_name(request.billing_name);
+        existingOrder.setBilling_address(request.billing_address);
+        existingOrder.setBilling_email(request.billing_email);
+        existingOrder.setBilling_phone(request.billing_phone);
         return this.orderRepository.save(existingOrder);
     }
 

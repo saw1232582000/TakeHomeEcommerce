@@ -17,7 +17,10 @@ import java.util.UUID;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "users",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "username")
+})
 @NoArgsConstructor
 @Data
 public class User implements UserDetails {
@@ -32,7 +35,7 @@ public class User implements UserDetails {
     @UuidGenerator
     private UUID id;
 
-    @Column(name="username")
+    @Column(name="username",unique = true)
     private String username;
 
     @JsonIgnore
@@ -98,6 +101,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 

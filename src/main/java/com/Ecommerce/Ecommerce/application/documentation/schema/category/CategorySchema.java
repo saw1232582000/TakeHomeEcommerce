@@ -22,6 +22,6 @@ public class CategorySchema {
     @Schema(description = "Description of the category",example = "string")
     private String description;
 
-    @Schema(description = "Products under this category")
-    private List<ProductSchema> products;
+//    @Schema(description = "Products under this category")
+//    private List<ProductSchema> products;
 }

@@ -2,6 +2,7 @@ package com.Ecommerce.Ecommerce.application.config;
 
 
 import com.Ecommerce.Ecommerce.application.Service.UserService;
+import com.Ecommerce.Ecommerce.application.exception.CustomAuthenticationEntryPoint;
 import com.Ecommerce.Ecommerce.application.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -55,12 +56,14 @@ public class SecurityConfig {
 //
                                 )
                                 .permitAll()
+                                .requestMatchers("/product/**").hasAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userService)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 //                .authenticationProvider(authenticationProvider)
+                .exceptionHandling((exceptions)-> exceptions.authenticationEntryPoint(new CustomAuthenticationEntryPoint()))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
