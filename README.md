@@ -35,6 +35,6 @@ Setup these properties in your __'application.properties'__ file or __'applicati
 
 ##  Running the Project
 
-Run your project.
+If all above requirements are met, you can start running your project.
 
 Then, Access the application by navigating to __'http://localhost:8080/swagger-ui/index.html'__
